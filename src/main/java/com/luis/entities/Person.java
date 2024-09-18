@@ -7,10 +7,12 @@ import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
 @Getter @Setter
+@NoArgsConstructor
 public class Person {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,6 +23,14 @@ public class Person {
 	@NotNull
 	@Size(min = 1, max = 50, message = "no cumple con la longitud")
 	private String lastname;
-	@Size(min = 1, max = 50, message = "no cumple con la longitud")
+	@NotNull
+	private String description;
 	private String img;
+	
+	public Person(String name, String lastname, String description, String img) {
+		this.name = name;
+		this.lastname = lastname;
+		this.description = description;
+		this.img = img;
+	}
 }
